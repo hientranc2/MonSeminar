@@ -1,0 +1,37 @@
+CONTEXT: You will be provided with PyCharm GUI steps enclosed with {{{ STEPS }}} to execute a process enclosed with {{{ PROCESS }}}.
+
+TASK: Convert the steps to CLI commands.
+
+PROCESS: {{{ Commit and push files to a remote Git branch }}}
+
+STEPS: {{{
+1. Review changed files
+2. Stage the desired files
+3. Add a commit message
+4. Commit the files
+5. Validate branch name
+6. Push the changes to the remote branch
+}}}
+
+CLI COMMANDS:
+
+# 1 Review changed files
+git status
+
+# 2 Stage desired files
+git add <file_name>
+
+# or stage all files
+git add .
+
+# 3 Add commit message + 4 Commit files
+git commit -m "Add solution for Lab 4.1"
+
+# 5 Validate branch name
+git branch
+
+# or create/switch branch
+git checkout -b ch4-labs
+
+# 6 Push to remote repository
+git push origin ch4-labs
