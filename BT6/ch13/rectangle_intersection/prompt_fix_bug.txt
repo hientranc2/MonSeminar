@@ -1,0 +1,56 @@
+CONTEXT: You are provided with 
+1. Python function enclosed with {{{ FUNCTION }}} that has a bug. 
+2. Test suite code enclosed with {{{ UNIT TESTS }}}.
+3. Error message enclosed with {{{ ERROR }}}.
+TASK: Fix the function implementation.
+
+FUNCTION: {{{ 
+def rect_intersection_area(rect1, rect2):
+    return None
+}}}
+
+UNIT TESTS: {{{ 
+import unittest
+from rectangle_intersection import rect_intersection_area
+
+class TestRectangleIntersectionArea(unittest.TestCase):
+    def test_intersecting_rectangles(self):
+        rect1 = (0, 0, 4, 4)
+        rect2 = (2, 2, 6, 6)
+        self.assertEqual(rect_intersection_area(rect1, rect2), 4)
+
+    def test_touching_rectangles_corner(self):
+        rect1 = (0, 0, 2, 2)
+        rect2 = (2, 2, 4, 4)
+        self.assertEqual(rect_intersection_area(rect1, rect2), 0)
+
+    def test_no_height(self):        
+        rect1 = (-1, -1, -1, 4)        
+        rect2 = (-1, 1, 3, 2)        
+        with self.assertRaises(ValueError):
+            rect_intersection_area(rect1, rect2)
+
+    def test_single_point_rectangle(self):        
+        rect1 = (-1, -1, 4, 4)        
+        rect2 = (2, 2, 2, 2)
+        with self.assertRaises(ValueError):
+            rect_intersection_area(rect1, rect2)
+}}}
+
+ERROR: {{{ 
+======================================================================
+FAIL: test_intersecting_rectangles 
+AssertionError: None != 4
+
+======================================================================
+FAIL: test_touching_rectangles_corner
+AssertionError: None != 0
+
+======================================================================
+FAIL: test_no_height 
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_single_point_rectangle 
+AssertionError: ValueError not raised
+}}}
